@@ -1,10 +1,39 @@
 @import "tailwindcss";
 
 @theme {
+  --breakpoint-*: initial;
+  --breakpoint-sm: 22rem;
+  --breakpoint-md: 45rem;
+  --breakpoint-lg: 72rem;
+  --breakpoint-xl: 92rem;
+}
+
+@theme {
   --color-primary-70: #0e8784;
   --color-secondary-30: #fdd6ba;
   --color-neutral-80: #333d4b;
   --color-neutral-60: #83888f;
   --color-neutral-10: #fefcf7;
   --color-neutral-05: #fff;
+}
+
+@theme {
+  --font-sans: "Barlow", sans-serif;
+  --font-display: "Fraunces", serif;
+
+  --heading-xl: 900 4.5rem/1 var(--font-display);
+  --heading-lg: 900 2.5rem/1.2 var(--font-display);
+  --heading-md: 900 2rem/1.125 var(--font-display);
+  --heading-sm: 900 1.5rem/1.334 var(--font-display);
+
+  --body-md: 400 1rem/1.625 var(--font-sans);
+  --body-sm: 700 0.75rem/1.25 var(--font-sans);
+}
+
+@utility heading-* {
+  font: --value(--heading- *);
+}
+
+@utility body-* {
+  font: --value(--body- *);
 }
