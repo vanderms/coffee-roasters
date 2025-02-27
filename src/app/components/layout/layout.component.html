@@ -1,0 +1,26 @@
+<header>
+  <h1 class="sr-only">Coffee Roasters Subscription App</h1>
+  <div class="flex justify-between px-6 pt-8">
+    <img src="assets/logo/logo.svg" alt="" />
+    <button>
+      <app-icon name="menu" />
+    </button>
+  </div>
+
+  <nav class="nav">
+    <ul>
+      <li>
+        <a class="link" routerLink="/">Home</a>
+      </li>
+      <li>
+        <a class="link" routerLink="/about-us">About Us</a>
+      </li>
+      <li>
+        <a class="link" routerLink="/your-plan">Create Your Plan</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <ng-content></ng-content>
+</main>
