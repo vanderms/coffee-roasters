@@ -18,6 +18,7 @@
 }
 
 @theme {
+  --font-*: initial;
   --font-sans: "Barlow", sans-serif;
   --font-display: "Fraunces", serif;
 

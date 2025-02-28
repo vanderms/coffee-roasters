@@ -1,9 +1,8 @@
-
 @reference '../../../styles.css';
 
 @layer components {
   .nav {
-    @apply fixed px-6;
+    @apply fixed px-6 pt-10;
     background: linear-gradient(
       180deg,
       rgba(254, 252, 247, 0.504981) 0%,
@@ -11,12 +10,9 @@
     );
 
     inset: 5.625rem 0 0 0;
-
   }
 
   .link {
-    @apply heading-sm text-center text-neutral-80;
+    @apply text-neutral-80 grid place-items-center;
   }
 }
-
-

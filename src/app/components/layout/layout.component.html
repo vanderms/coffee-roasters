@@ -1,25 +1,37 @@
 <header>
   <h1 class="sr-only">Coffee Roasters Subscription App</h1>
-  <div class="flex justify-between px-6 pt-8">
-    <img src="assets/logo/logo.svg" alt="" />
-    <button>
-      <app-icon name="menu" />
+  <div class="flex justify-between px-6 pt-8 md:pt-10">
+    <img
+      src="assets/logo/logo.svg"
+      alt=""
+      class="h-auto w-[10.1875rem] md:w-[14.75rem]"
+    />
+    <button
+      class="cursor-pointer md:hidden"
+      (click)="handleMenuClick()"
+      aria-label="Toggle Menu"
+    >
+      <app-icon [name]="menuIcon()" />
     </button>
   </div>
 
-  <nav class="nav">
-    <ul>
-      <li>
-        <a class="link" routerLink="/">Home</a>
-      </li>
-      <li>
-        <a class="link" routerLink="/about-us">About Us</a>
-      </li>
-      <li>
-        <a class="link" routerLink="/your-plan">Create Your Plan</a>
-      </li>
-    </ul>
-  </nav>
+  @if (!menuClosed()) {
+    <nav class="nav">
+      <ul class="grid gap-y-8">
+        <li>
+          <a class="link heading-sm" routerLink="/">Home</a>
+        </li>
+        <li>
+          <a class="link heading-sm" routerLink="/about-us">About Us</a>
+        </li>
+        <li>
+          <a class="link heading-sm" routerLink="/your-plan"
+            >Create Your Plan</a
+          >
+        </li>
+      </ul>
+    </nav>
+  }
 </header>
 <main>
   <ng-content></ng-content>
