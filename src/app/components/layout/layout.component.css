@@ -1,0 +1,34 @@
+@reference '../../../styles.css';
+
+@layer components {
+  .nav {
+    @apply fixed pt-10;
+    background: linear-gradient(
+      180deg,
+      rgba(254, 252, 247, 0.504981) 0%,
+      #fefcf7 55.94%
+    );
+
+    inset: 5.625rem 0 0 0;
+
+    @variant md {
+      @apply static pt-0;
+    }
+  }
+
+  .nav.menu-closed {
+    @apply hidden;
+
+    @variant md {
+      @apply grid;
+    }
+  }
+
+  .link {
+    @apply text-neutral-80 grid place-items-center;
+
+    @variant md {
+      @apply text-neutral-60 uppercase;
+    }
+  }
+}

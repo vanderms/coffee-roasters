@@ -1,0 +1,38 @@
+<header class="ctn justify-between pt-8 md:flex md:items-center md:pt-10">
+  <h1 class="sr-only">Coffee Roasters Subscription App</h1>
+  <div class="flex justify-between">
+    <img
+      src="assets/logo/logo.svg"
+      alt=""
+      class="h-auto w-[10.1875rem] md:w-[14.75rem]"
+    />
+    <button
+      class="cursor-pointer md:hidden"
+      (click)="handleMenuClick()"
+      aria-label="Toggle Menu"
+    >
+      <app-icon [name]="menuIcon()" />
+    </button>
+  </div>
+
+  <nav class="nav" [class.menu-closed]="menuClosed()">
+    <ul class="flex flex-col gap-8 md:flex-row">
+      <li>
+        <a class="link heading-sm md:body-sm" routerLink="/">Home</a>
+      </li>
+      <li>
+        <a class="link heading-sm md:body-sm" routerLink="/about-us"
+          >About Us</a
+        >
+      </li>
+      <li>
+        <a class="link heading-sm md:body-sm" routerLink="/your-plan"
+          >Create Your Plan</a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <ng-content></ng-content>
+</main>
