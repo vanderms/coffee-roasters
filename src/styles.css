@@ -35,6 +35,10 @@
   font: --value(--heading- *);
 }
 
+.heading-sm {
+  letter-spacing: 0.92px;
+}
+
 @utility body-* {
   font: --value(--body- *);
 }

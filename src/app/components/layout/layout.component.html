@@ -1,4 +1,4 @@
-<header>
+<header class="justify-between md:flex md:items-center">
   <h1 class="sr-only">Coffee Roasters Subscription App</h1>
   <div class="flex justify-between px-6 pt-8 md:pt-10">
     <img
@@ -15,23 +15,23 @@
     </button>
   </div>
 
-  @if (!menuClosed()) {
-    <nav class="nav">
-      <ul class="grid gap-y-8">
-        <li>
-          <a class="link heading-sm" routerLink="/">Home</a>
-        </li>
-        <li>
-          <a class="link heading-sm" routerLink="/about-us">About Us</a>
-        </li>
-        <li>
-          <a class="link heading-sm" routerLink="/your-plan"
-            >Create Your Plan</a
-          >
-        </li>
-      </ul>
-    </nav>
-  }
+  <nav class="nav" [class.menu-closed]="menuClosed()">
+    <ul class="flex flex-col gap-8 md:flex-row">
+      <li>
+        <a class="link heading-sm md:body-sm" routerLink="/">Home</a>
+      </li>
+      <li>
+        <a class="link heading-sm md:body-sm" routerLink="/about-us"
+          >About Us</a
+        >
+      </li>
+      <li>
+        <a class="link heading-sm md:body-sm" routerLink="/your-plan"
+          >Create Your Plan</a
+        >
+      </li>
+    </ul>
+  </nav>
 </header>
 <main>
   <ng-content></ng-content>

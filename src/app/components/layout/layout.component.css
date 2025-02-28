@@ -10,9 +10,25 @@
     );
 
     inset: 5.625rem 0 0 0;
+
+    @variant md {
+      @apply static;
+    }
+  }
+
+  .nav.menu-closed {
+    @apply hidden;
+
+    @variant md {
+      @apply grid;
+    }
   }
 
   .link {
     @apply text-neutral-80 grid place-items-center;
+
+    @variant md {
+      @apply text-neutral-60 uppercase;
+    }
   }
 }
