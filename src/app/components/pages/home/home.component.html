@@ -1,4 +1,4 @@
-<section class="relative h-[31.25rem]">
+<section class="relative h-[31.25rem] lg:h-[37.5rem]">
   <picture>
     <source
       media="(min-width: 72rem)"
@@ -14,13 +14,21 @@
       alt=""
     />
   </picture>
-  <header class="relative grid h-full content-center">
-    <h2 class="heading-lg text-neutral-10">Great coffee made simple.</h2>
-    <p class="text-neutral-10 body-md">
+  <header
+    class="relative mx-auto grid h-full w-[86%] max-w-[17.5rem] content-center text-center md:ml-[3.625rem] md:max-w-[24.875rem] md:text-left lg:max-w-[30.8125rem]"
+  >
+    <h2
+      class="heading-lg text-neutral-10 lg:heading-2xl md:max-w-[20.75rem] lg:max-w-[30.8125rem]"
+    >
+      Great coffee made simple.
+    </h2>
+    <p class="text-neutral-10 body-md mt-6 lg:mt-8 lg:max-w-[27rem]">
       Start your mornings with the world’s best coffees. Try our expertly
       curated artisan coffees from our best roasters delivered directly to your
       door, at your schedule.
     </p>
-    <a routerLink="/your-plan">Create your plan</a>
+    <a routerLink="/your-plan" class="primary-btn mt-10 md:w-[13.5rem] lg:mt-14"
+      >Create your plan</a
+    >
   </header>
 </section>
