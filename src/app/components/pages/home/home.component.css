@@ -1,0 +1,11 @@
+.collection-header::after {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(254, 252, 247, 0.0001) 0%,
+    #fefcf7 100%
+  );
+}

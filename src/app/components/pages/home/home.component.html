@@ -18,7 +18,7 @@
     class="relative mx-auto grid h-full w-[86%] max-w-[17.5rem] content-center text-center md:ml-[3.625rem] md:max-w-[24.875rem] md:text-left lg:max-w-[30.8125rem]"
   >
     <h2
-      class="heading-lg text-neutral-10 lg:heading-2xl md:max-w-[20.75rem] lg:max-w-[30.8125rem]"
+      class="heading-lg text-neutral-10 lg:heading-xl md:max-w-[20.75rem] lg:max-w-[30.8125rem]"
     >
       Great coffee made simple.
     </h2>
@@ -31,4 +31,46 @@
       >Create your plan</a
     >
   </header>
+</section>
+<section class="mt-[7.5rem] md:mt-36 lg:mt-[8.5rem]">
+  <header
+    class="collection-header relative md:grid md:h-[7.375rem] md:place-items-center"
+  >
+    <h2
+      class="heading-lg text-neutral-60 md:heading-xl lg:heading-3xl text-center"
+    >
+      our collection
+    </h2>
+  </header>
+  <ul
+    class="relative mt-3 flex flex-col items-center gap-12 md:mt-[-3.6875rem] lg:mt-[-4.375rem] lg:flex-row lg:gap-[1.875rem]"
+  >
+    @for (item of collection; track $index) {
+      <li>
+        <article
+          class="flex max-w-[17.625rem] flex-col items-center md:max-w-[35.8125rem] md:max-lg:flex-row"
+        >
+          <img
+            class="h-[12.5rem] w-auto md:h-[15.9375rem] lg:h-[12.0625rem]"
+            [src]="item.src"
+            alt=""
+          />
+          <div
+            class="mt-6 flex flex-col md:mt-0 md:justify-center lg:mt-[4.5rem]"
+          >
+            <h3
+              class="heading-sm text-neutral-80 text-center md:max-lg:text-left"
+            >
+              {{ item.title }}
+            </h3>
+            <p
+              class="body-md text-neutral-80 mt-4 text-center md:max-lg:text-left lg:mt-6"
+            >
+              {{ item.text }}
+            </p>
+          </div>
+        </article>
+      </li>
+    }
+  </ul>
 </section>

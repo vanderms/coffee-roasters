@@ -23,7 +23,7 @@
   --font-sans: "Barlow", sans-serif;
   --font-display: "Fraunces", serif;
 
-  --heading-2xl: 900 4.5rem/1 var(--font-display);
+  --heading-3xl: 900 9.375rem/4.5rem var(--font-display);
   --heading-xl: 900 4.5rem/1 var(--font-display);
   --heading-lg: 900 2.5rem/1.2 var(--font-display);
   --heading-md: 900 2rem/1.125 var(--font-display);
@@ -82,4 +82,9 @@
 
 .primary-btn:disabled {
   background-color: var(--color-neutral-60);
+}
+
+.primary-btn:active {
+  transform: translateY(0.125rem);
+  transition: all 0.25s;
 }
