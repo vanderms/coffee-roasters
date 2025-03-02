@@ -25,3 +25,13 @@
     }
   }
 }
+
+@layer components {
+  .homepage-how__sequence-circle {
+    @apply hidden;
+
+    @variant md {
+      @apply block;
+    }
+  }
+}
