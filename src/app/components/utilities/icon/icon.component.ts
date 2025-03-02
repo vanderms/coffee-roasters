@@ -30,15 +30,15 @@ export class IconComponent {
       distinctUntilChanged(),
       switchMap(async (value) => {
         const data = await fetch(`/assets/icons/${value}.svg`).catch((error) =>
-          raise(error)
+          raise(error),
         );
         const svg = await data.text();
         return this.sanitizer.bypassSecurityTrustHtml(svg);
-      })
-    )
+      }),
+    ),
   );
 
-  @Input() set name(value: string) {
+  @Input({ required: true }) set name(value: string) {
     if (value) this.name$.next(value);
   }
 }

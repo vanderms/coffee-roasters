@@ -34,7 +34,7 @@
 </section>
 <section class="mt-[7.5rem] md:mt-36 lg:mt-[8.5rem]">
   <header
-    class="collection-header relative md:grid md:h-[7.375rem] md:place-items-center"
+    class="homepage__collection-header relative md:grid md:h-[7.375rem] md:place-items-center"
   >
     <h2
       class="heading-lg text-neutral-60 md:heading-xl lg:heading-3xl text-center"
@@ -71,6 +71,50 @@
           </div>
         </article>
       </li>
+    }
+  </ul>
+</section>
+<section class="mt-[7.5rem] md:mt-36 lg:mt-[12.625rem]">
+  <header
+    class="bg-neutral-80 text-neutral-10 rounded-[.625rem] pt-16 pb-[40.6875rem] md:pt-[3.5rem] md:pb-[23rem] lg:pt-[6.25rem] lg:pb-[19.8125rem]"
+  >
+    <div
+      class="mx-auto w-[86%] max-w-[17.5rem] text-center md:max-w-[33.75rem]"
+    >
+      <h2 class="heading-sm md:heading-md lg:heading-lg text-[1.75rem]">
+        Why choose us?
+      </h2>
+      <p class="body-md mt-6 lg:mt-8">
+        A large part of our role is choosing which particular coffees will be
+        featured in our range. This means working closely with the best coffee
+        growers to give you a more impactful experience on every level.
+      </p>
+    </div>
+  </header>
+  <ul
+    class="mt-[-36.6875rem] flex flex-col gap-6 md:mt-[-18.625rem] lg:mx-auto lg:mt-[-13.5625rem] lg:w-[69.375rem] lg:flex-row lg:gap-[1.875rem]"
+  >
+    @for (item of reasons; track $index) {
+      <article
+        class="bg-primary-70 mx-auto flex w-[86%] max-w-[17.5rem] flex-col items-center gap-14 rounded-[.625rem] pt-[4.5rem] pb-12 md:max-lg:max-w-[35.8125rem] md:max-lg:flex-row md:max-lg:p-[2.5rem_3rem_2.5rem_4.5rem] lg:w-full lg:max-w-full lg:px-12"
+      >
+        <app-icon
+          class="homepage__reasons-icon-card"
+          [name]="item.src"
+        ></app-icon>
+        <div>
+          <h3
+            class="heading-sm text-neutral-10 text-center md:max-lg:text-left"
+          >
+            {{ item.title }}
+          </h3>
+          <p
+            class="body-md text-neutral-10 mt-6 px-5 text-center md:mt-4 md:px-0 md:max-lg:text-left"
+          >
+            {{ item.text }}
+          </p>
+        </div>
+      </article>
     }
   </ul>
 </section>
