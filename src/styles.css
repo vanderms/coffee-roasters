@@ -29,6 +29,8 @@
   --heading-md: 900 2rem/1.125 var(--font-display);
   --heading-sm: 900 1.5rem/1.334 var(--font-display);
 
+  --body-spacing-sm: 0.92px;
+
   --body-md: 400 0.9375rem/1.625 var(--font-sans);
   --body-sm: 700 0.75rem/1.25 var(--font-sans);
 }
@@ -43,12 +45,9 @@
   }
 }
 
-.heading-sm {
-  letter-spacing: 0.92px;
-}
-
 @utility body-* {
   font: --value(--body- *);
+  letter-spacing: --value(--body-spacing- *);
 }
 
 @layer components {
@@ -87,4 +86,14 @@
 .primary-btn:active {
   transform: translateY(0.125rem);
   transition: all 0.25s;
+}
+
+.component\:icon-link :where(svg, path) {
+  color: var(--color-neutral-10);
+  fill: var(--color-neutral-10);
+}
+
+.component\:icon-link:hover :where(svg, path) {
+  color: var(--color-secondary-30);
+  fill: var(--color-secondary-30);
 }
