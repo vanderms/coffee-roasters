@@ -1,0 +1,37 @@
+@reference '../../../../styles.css';
+
+.homepage__collection-header::after {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(254, 252, 247, 0.0001) 0%,
+    #fefcf7 100%
+  );
+}
+
+@layer components {
+  .homepage__reasons-icon-card svg {
+    @variant md {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+
+    @variant lg {
+      width: 4.5rem;
+      height: 4.5rem;
+    }
+  }
+}
+
+@layer components {
+  .homepage-how__sequence-circle {
+    @apply hidden;
+
+    @variant md {
+      @apply block;
+    }
+  }
+}

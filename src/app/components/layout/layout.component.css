@@ -4,10 +4,12 @@
   .nav {
     @apply fixed pt-10;
     background: linear-gradient(
-      180deg,
+      0deg,
       rgba(254, 252, 247, 0.504981) 0%,
       #fefcf7 55.94%
     );
+
+    z-index: 9999;
 
     inset: 5.625rem 0 0 0;
 

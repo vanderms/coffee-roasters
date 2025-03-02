@@ -1,0 +1,173 @@
+<section class="relative h-[31.25rem] lg:h-[37.5rem]">
+  <picture>
+    <source
+      media="(min-width: 72rem)"
+      srcset="assets/stock/homepage__hero-lg.jpg"
+    />
+    <source
+      media="(min-width: 45rem)"
+      srcset="assets/stock/homepage__hero-md.jpg"
+    />
+    <img
+      class="absolute h-full w-full rounded-xl object-cover object-left-top"
+      src="assets/stock/homepage__hero-sm.jpg"
+      alt=""
+    />
+  </picture>
+  <header
+    class="relative mx-auto grid h-full w-[86%] max-w-[17.5rem] content-center text-center md:ml-[3.625rem] md:max-w-[24.875rem] md:text-left lg:max-w-[30.8125rem]"
+  >
+    <h2
+      class="heading-lg text-neutral-10 lg:heading-xl md:max-w-[20.75rem] lg:max-w-[30.8125rem]"
+    >
+      Great coffee made simple.
+    </h2>
+    <p class="text-neutral-10 body-md mt-6 lg:mt-8 lg:max-w-[27rem]">
+      Start your mornings with the world’s best coffees. Try our expertly
+      curated artisan coffees from our best roasters delivered directly to your
+      door, at your schedule.
+    </p>
+    <a routerLink="/your-plan" class="primary-btn mt-10 md:w-[13.5rem] lg:mt-14"
+      >Create your plan</a
+    >
+  </header>
+</section>
+<section class="mt-[7.5rem] md:mt-36 lg:mt-[8.5rem]">
+  <header
+    class="homepage__collection-header relative md:grid md:h-[7.375rem] md:place-items-center"
+  >
+    <h2
+      class="heading-lg text-neutral-60 md:heading-xl lg:heading-3xl text-center"
+    >
+      our collection
+    </h2>
+  </header>
+  <ul
+    class="relative mt-3 flex flex-col items-center gap-12 md:mt-[-3.6875rem] lg:mt-[-4.375rem] lg:flex-row lg:gap-[1.875rem]"
+  >
+    @for (item of collection; track $index) {
+      <li>
+        <article
+          class="flex max-w-[17.625rem] flex-col items-center md:max-w-[35.8125rem] md:max-lg:flex-row"
+        >
+          <img
+            class="h-[12.5rem] w-auto md:h-[15.9375rem] lg:h-[12.0625rem]"
+            [src]="item.icon"
+            alt=""
+          />
+          <div
+            class="mt-6 flex flex-col md:mt-0 md:justify-center lg:mt-[4.5rem]"
+          >
+            <h3
+              class="heading-sm text-neutral-80 text-center md:max-lg:text-left"
+            >
+              {{ item.title }}
+            </h3>
+            <p
+              class="body-md text-neutral-80 mt-4 text-center md:max-lg:text-left lg:mt-6"
+            >
+              {{ item.text }}
+            </p>
+          </div>
+        </article>
+      </li>
+    }
+  </ul>
+</section>
+<section class="mt-[7.5rem] md:mt-36 lg:mt-[12.625rem]">
+  <header
+    class="bg-neutral-80 text-neutral-10 rounded-[.625rem] pt-16 pb-[40.6875rem] md:pt-[3.5rem] md:pb-[23rem] lg:pt-[6.25rem] lg:pb-[19.8125rem]"
+  >
+    <div
+      class="mx-auto w-[86%] max-w-[17.5rem] text-center md:max-w-[33.75rem]"
+    >
+      <h2 class="heading-sm md:heading-md lg:heading-lg text-[1.75rem]">
+        Why choose us?
+      </h2>
+      <p class="body-md mt-6 lg:mt-8">
+        A large part of our role is choosing which particular coffees will be
+        featured in our range. This means working closely with the best coffee
+        growers to give you a more impactful experience on every level.
+      </p>
+    </div>
+  </header>
+  <ul
+    class="mt-[-36.6875rem] flex flex-col gap-6 md:mt-[-18.625rem] lg:mx-auto lg:mt-[-13.5625rem] lg:w-[69.375rem] lg:flex-row lg:gap-[1.875rem]"
+  >
+    @for (item of reasons; track $index) {
+      <li>
+        <article
+          class="bg-primary-70 mx-auto flex w-[86%] max-w-[17.5rem] flex-col items-center gap-14 rounded-[.625rem] pt-[4.5rem] pb-12 md:max-lg:max-w-[35.8125rem] md:max-lg:flex-row md:max-lg:p-[2.5rem_3rem_2.5rem_4.5rem] lg:w-full lg:max-w-full lg:px-12"
+        >
+          <app-icon
+            class="homepage__reasons-icon-card"
+            [name]="item.icon"
+          ></app-icon>
+          <div>
+            <h3
+              class="heading-sm text-neutral-10 text-center md:max-lg:text-left"
+            >
+              {{ item.title }}
+            </h3>
+            <p
+              class="body-md text-neutral-10 mt-6 px-5 text-center md:mt-4 md:px-0 md:max-lg:text-left"
+            >
+              {{ item.text }}
+            </p>
+          </div>
+        </article>
+      </li>
+    }
+  </ul>
+</section>
+<section class="mt-[7.5rem] lg:mx-auto lg:mt-[12.5rem] lg:w-[69.375rem]">
+  <header>
+    <h2 class="heading-sm text-neutral-60 text-center md:mt-36 md:text-left">
+      How it works
+    </h2>
+  </header>
+  <div
+    aria-hidden="true"
+    class="mt-10 hidden max-w-[65.3125rem] pt-[.9375rem] md:block lg:mt-20"
+  >
+    <div class="border-secondary-30 w-full border-2"></div>
+    <div class="grid translate-y-[-1.0625rem] grid-cols-3 gap-4 lg:gap-24">
+      @for (item of [0, 0, 0]; track $index) {
+        <div class="last:bg-neutral-05 last:w-full">
+          <span
+            class="bg-neutral-05 border-primary-70 block h-8 w-8 rounded-full border-2"
+          ></span>
+        </div>
+      }
+    </div>
+  </div>
+  <ol
+    class="mt-20 grid max-w-[65.3125rem] gap-14 md:mt-12 md:grid-cols-3 md:gap-4 lg:mt-[4.1875rem] lg:gap-24"
+  >
+    @for (item of how; track $index) {
+      <li>
+        <article>
+          <span
+            class="heading-xl text-secondary-30 block text-center md:text-left"
+            >{{ item.icon }}</span
+          >
+          <h3
+            class="heading-sm text-neutral-80 mt-6 text-center text-[1.75rem] md:max-w-[12.5rem] md:text-left lg:mt-[2.375rem]"
+          >
+            {{ item.title }}
+          </h3>
+          <p
+            class="body-md text-neutral-60 mt-6 text-center md:text-left lg:mt-[2.625rem]"
+          >
+            {{ item.text }}
+          </p>
+        </article>
+      </li>
+    }
+  </ol>
+  <div class="mt-20 flex justify-center md:mt-11 md:justify-start lg:mt-16">
+    <a routerLink="your-plan" class="primary-btn w-[13.5625rem]"
+      >Create your plan</a
+    >
+  </div>
+</section>
