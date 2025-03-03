@@ -27,6 +27,7 @@
   --heading-xl: 900 4.5rem/1 var(--font-display);
   --heading-lg: 900 2.5rem/1.2 var(--font-display);
   --heading-md: 900 2rem/1.125 var(--font-display);
+  --heading-sm2: 900 1.75rem/1.125 var(--font-display);
   --heading-sm: 900 1.5rem/1.334 var(--font-display);
 
   --body-spacing-sm: 0.92px;
@@ -52,7 +53,11 @@
 
 @layer components {
   .ctn {
-    padding-inline: min(6.4%, 1.5rem);
+    padding-inline: min(6.4vw, 1.5rem);
+    /* display: grid;
+    grid-template-columns: 100%;
+    justify-content: center;
+    overflow: clip; */
 
     @variant md {
       padding-inline: 2.5rem;
@@ -61,6 +66,21 @@
     @variant lg {
       padding-inline: max(2.5rem, 50vw - 40rem);
     }
+  }
+}
+
+@utility full-width {
+  width: calc(100% + 2 * min(6.4vw, 1.5rem));
+  margin-left: calc(-1 * min(6.4vw, 1.5rem));
+
+  @variant md {
+    width: calc(100% + 5rem);
+    margin-left: -2.5rem;
+  }
+
+  @variant lg {
+    width: calc(100% + 2 * max(2.5rem, 50vw - 40rem));
+    margin-left: calc(-1 * max(2.5rem, 50vw - 40rem));
   }
 }
 

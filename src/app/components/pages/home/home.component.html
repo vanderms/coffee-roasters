@@ -27,7 +27,9 @@
       curated artisan coffees from our best roasters delivered directly to your
       door, at your schedule.
     </p>
-    <a routerLink="/your-plan" class="primary-btn mt-10 md:w-[13.5rem] lg:mt-14"
+    <a
+      routerLink="/create-plan"
+      class="primary-btn mt-10 md:w-[13.5rem] lg:mt-14"
       >Create your plan</a
     >
   </header>
@@ -144,7 +146,7 @@
   <ol
     class="mt-20 grid max-w-[65.3125rem] gap-14 md:mt-12 md:grid-cols-3 md:gap-4 lg:mt-[4.1875rem] lg:gap-24"
   >
-    @for (item of how; track $index) {
+    @for (item of steps; track $index) {
       <li>
         <article>
           <span
@@ -166,7 +168,7 @@
     }
   </ol>
   <div class="mt-20 flex justify-center md:mt-11 md:justify-start lg:mt-16">
-    <a routerLink="your-plan" class="primary-btn w-[13.5625rem]"
+    <a routerLink="/create-plan" class="primary-btn w-[13.5625rem]"
       >Create your plan</a
     >
   </div>

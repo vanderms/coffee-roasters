@@ -58,7 +58,7 @@ export class HomeComponent {
     },
   ];
 
-  protected readonly how: CardDetails[] = [
+  protected readonly steps: CardDetails[] = [
     {
       icon: '01',
       title: 'Pick your coffee',
