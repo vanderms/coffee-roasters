@@ -4,10 +4,21 @@ export const routes: Routes = [
   {
     path: '',
     title: 'Coffeeroasters: Homepage',
-    loadComponent: () => {
-      return import('../app/components/pages/home/home.component').then(
-        (m) => m.HomeComponent,
+    loadComponent: async () => {
+      const { HomeComponent } = await import(
+        '../app/components/pages/home/home.component'
       );
+      return HomeComponent;
+    },
+  },
+  {
+    path: 'about-us',
+    title: 'Coffeeroasters: About Us',
+    loadComponent: async () => {
+      const { AboutUsComponent } = await import(
+        '../app/components/pages/about-us/about-us.component'
+      );
+      return AboutUsComponent;
     },
   },
 ];
