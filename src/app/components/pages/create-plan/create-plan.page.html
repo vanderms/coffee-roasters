@@ -1,0 +1,77 @@
+<section class="relative h-[25rem] lg:h-[28.125rem]">
+  <picture>
+    <source
+      media="(min-width: 75rem)"
+      srcset="assets/stock/create-plan__hero/coffee-lg.jpg"
+    />
+    <source
+      media="(min-width: 45rem)"
+      srcset="assets/stock/create-plan__hero/coffee-md.jpg"
+    />
+    <img
+      class="absolute h-full w-full rounded-xl object-cover object-left-top"
+      src="assets/stock/create-plan__hero/coffee.jpg"
+      alt=""
+    />
+  </picture>
+  <header
+    class="relative mx-auto grid h-full w-[86%] max-w-[17.5rem] content-center text-center md:ml-[3.625rem] md:max-w-[24.875rem] md:text-left lg:ml-[5.3125rem] lg:max-w-[30.8125rem]"
+  >
+    <h2
+      class="heading-lg text-neutral-10 md:max-w-[20.75rem] lg:max-w-[30.8125rem]"
+    >
+      Create a plan
+    </h2>
+    <p class="text-neutral-10 body-md mt-6 lg:mt-8 lg:max-w-[27rem]">
+      Build a subscription plan that best fits your needs. We offer an
+      assortment of the best artisan coffees from around the globe delivered
+      fresh to your door.
+    </p>
+  </header>
+</section>
+<section
+  class="bg-neutral-80 sm:max-lg:full-width mt-[7.5rem] rounded-lg px-[min(6.4%,1.5rem)] py-20 md:px-[2.5rem] lg:mt-[12.5rem] lg:py-[6.25rem]"
+>
+  <h2 class="sr-only">How it works?</h2>
+  <div class="lg:mx-auto lg:w-[69.375rem]">
+    <div
+      aria-hidden="true"
+      class="hidden max-w-[65.3125rem] pt-[.9375rem] md:block"
+    >
+      <div class="border-secondary-30 w-full border-2"></div>
+      <div class="grid translate-y-[-1.0625rem] grid-cols-3 gap-4 lg:gap-24">
+        @for (item of [0, 0, 0]; track $index) {
+        <div class="last:bg-neutral-80 last:w-full">
+          <span
+            class="bg-neutral-80 border-primary-70 block h-8 w-8 rounded-full border-2"
+          ></span>
+        </div>
+        }
+      </div>
+    </div>
+    <ol
+      class="grid max-w-[65.3125rem] gap-14 md:mt-12 md:grid-cols-3 md:gap-4 lg:mt-[4.1875rem] lg:gap-24"
+    >
+      @for (item of steps; track $index) {
+      <li>
+        <article>
+          <span
+            class="heading-xl text-secondary-30 block text-center md:text-left"
+            >{{ item.icon }}</span
+          >
+          <h3
+            class="heading-sm2 text-neutral-05 mt-6 text-center md:max-w-[12.5rem] md:text-left lg:mt-[2.375rem]"
+          >
+            {{ item.title }}
+          </h3>
+          <p
+            class="body-md text-neutral-05 mt-6 text-center md:text-left lg:mt-[2.625rem]"
+          >
+            {{ item.text }}
+          </p>
+        </article>
+      </li>
+      }
+    </ol>
+  </div>
+</section>
