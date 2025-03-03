@@ -1,11 +1,15 @@
-<header class="ctn justify-between pt-8 md:flex md:items-center md:pt-10">
+<header
+  class="ctn justify-between pt-8 md:flex md:items-center md:pt-10 lg:pt-[2.6875rem]"
+>
   <h1 class="sr-only">Coffee Roasters Subscription App</h1>
   <div class="flex justify-between">
-    <img
-      src="assets/logo/logo.svg"
-      alt=""
-      class="h-auto w-[10.1875rem] md:w-[14.75rem]"
-    />
+    <a routerLink="/">
+      <img
+        src="assets/logo/logo.svg"
+        alt=""
+        class="h-auto w-[10.1875rem] md:w-[14.75rem]"
+      />
+    </a>
     <button
       class="cursor-pointer md:hidden"
       (click)="handleMenuClick()"
@@ -33,6 +37,60 @@
     </ul>
   </nav>
 </header>
-<main class="ctn pt-10">
+<main class="ctn pt-10 lg:pt-[2.6875rem]">
   <ng-content></ng-content>
 </main>
+<footer class="ctn mt-[7.5rem] mb-[4.5rem] lg:mt-[12.5rem] lg:mb-[5.5rem]">
+  <div
+    class="bg-neutral-80 flex flex-col items-center gap-12 py-14 lg:flex-row lg:gap-[6.375rem] lg:px-[5.3125rem] lg:py-[2.9375rem]"
+  >
+    <a routerLink="/">
+      <img src="assets/logo/logo-white.svg" alt="" />
+    </a>
+    <ul class="flex flex-col items-center gap-6 md:flex-row">
+      <li>
+        <a class="body-sm text-neutral-60 uppercase" routerLink="/">Home</a>
+      </li>
+      <li>
+        <a class="body-sm text-neutral-60 uppercase" routerLink="/about-us"
+          >About Us</a
+        >
+      </li>
+      <li>
+        <a class="body-sm text-neutral-60 uppercase" routerLink="/your-plan"
+          >Create Your Plan</a
+        >
+      </li>
+    </ul>
+
+    <ul class="flex items-center gap-6 lg:ml-auto">
+      <li>
+        <a
+          href="https://www.facebook.com"
+          aria-label="facebook"
+          class="component:icon-link"
+        >
+          <app-icon name="facebook"></app-icon>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://www.twitter.com"
+          aria-label="twitter"
+          class="component:icon-link"
+        >
+          <app-icon name="twitter"></app-icon>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://www.instagram.com"
+          aria-label="instagram"
+          class="component:icon-link"
+        >
+          <app-icon name="instagram"></app-icon>
+        </a>
+      </li>
+    </ul>
+  </div>
+</footer>
