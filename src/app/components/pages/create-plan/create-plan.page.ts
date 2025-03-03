@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CreatePlanFormContainer } from './create-plan-form/create-plan-form.container';
 
 @Component({
   selector: 'app-create-plan',
-  imports: [],
+  imports: [CreatePlanFormContainer],
   templateUrl: './create-plan.page.html',
   styleUrl: './create-plan.page.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

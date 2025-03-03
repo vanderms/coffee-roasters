@@ -1,0 +1,24 @@
+.accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s;
+}
+
+details[open] .accordion-content {
+  grid-template-rows: 1fr;
+}
+
+details[open] .icon-expand {
+  rotate: 180deg;
+  transition: rotate 0.25s;
+}
+
+[data-active] {
+  background-color: var(--color-primary-70);
+  color: var(--color-neutral-10);
+}
+
+details[aria-disabled] {
+  pointer-events: none;
+  opacity: 0.5;
+}
