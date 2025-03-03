@@ -19,22 +19,22 @@ type CardDetails = {
 export class HomeComponent {
   protected readonly collection: CardDetails[] = [
     {
-      icon: 'assets/stock/collection/gran-expresso.png',
+      icon: 'assets/stock/homepage__collection/gran-expresso.png',
       title: 'Gran Espresso',
       text: ' Light and flavorful blend with cocoa and black pepper for an intense experience',
     },
     {
-      icon: 'assets/stock/collection/planalto.png',
+      icon: 'assets/stock/homepage__collection/planalto.png',
       title: 'Planalto',
       text: 'Brazilian dark roast with rich and velvety body, and hints of fruits and nuts',
     },
     {
-      icon: 'assets/stock/collection/picollo.png',
+      icon: 'assets/stock/homepage__collection/picollo.png',
       title: 'Picollo',
       text: 'Mild and smooth blend featuring notes of toasted almond and dried cherry ',
     },
     {
-      icon: 'assets/stock/collection/danche.png',
+      icon: 'assets/stock/homepage__collection/danche.png',
       title: 'Danche',
       text: 'Ethiopian hand-harvested blend densely packed with vibrant fruit notes',
     },
