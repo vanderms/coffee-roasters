@@ -100,3 +100,34 @@
     </div>
   </div>
 </section>
+
+<section class="mt-[7.5rem] max-w-[65.3125rem] md:mt-36 lg:mt-[10.5rem]">
+  <header>
+    <h2 class="heading-sm text-neutral-60 text-center md:text-left">
+      Our headquarters
+    </h2>
+  </header>
+  <ul
+    class="mt-[4.5rem] flex flex-col items-center gap-20 md:flex-row md:justify-between"
+  >
+    @for (item of headquarters; track $index) {
+      <li>
+        <article class="flex flex-col items-center md:items-start">
+          <app-icon [name]="item.icon"></app-icon>
+          <h3
+            class="heading-sm text-neutral-80 mt-11 text-center text-[1.75rem] md:text-left"
+          >
+            {{ item.name }}
+          </h3>
+          <address class="mt-6">
+            @for (p of item.address; track $index) {
+              <p class="body-md text-neutral-60 text-center md:text-left">
+                {{ p }}
+              </p>
+            }
+          </address>
+        </article>
+      </li>
+    }
+  </ul>
+</section>

@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { IconComponent } from '../../utilities/icon/icon.component';
 
 type HeadquarterDetails = {
   icon: string;
@@ -8,7 +10,7 @@ type HeadquarterDetails = {
 
 @Component({
   selector: 'app-about-us',
-  imports: [],
+  imports: [CommonModule, IconComponent],
   templateUrl: './about-us.component.html',
   styleUrl: './about-us.component.css',
 })
