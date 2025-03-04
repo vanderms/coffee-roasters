@@ -1,13 +1,24 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { CreatePlanAccordionComponent } from '../create-plan-accordion/create-plan-accordion.component';
+import { CommonModule, ViewportScroller } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { map, startWith, tap } from 'rxjs';
-import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { asyncScheduler, observeOn, startWith, tap } from 'rxjs';
+import { CreatePlanAccordionComponent } from '../create-plan-accordion/create-plan-accordion.component';
+import { CreatePlanStepsToken } from './steps.token';
 
 @Component({
   selector: 'app-create-plan-form',
-  imports: [CommonModule, CreatePlanAccordionComponent, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    CreatePlanAccordionComponent,
+    ReactiveFormsModule,
+  ],
   templateUrl: './create-plan-form.container.html',
   styleUrl: './create-plan-form.container.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,100 +26,13 @@ import { CommonModule } from '@angular/common';
 export class CreatePlanFormContainer {
   private fb = inject(NonNullableFormBuilder);
 
-  protected readonly steps = [
-    {
-      id: 'preparationMode',
-      label: 'How do you drink your coffee?',
-      options: [
-        {
-          title: 'Capsule',
-          text: 'Compatible with Nespresso systems and similar brewers',
-        },
-        {
-          title: 'Filter',
-          text: 'For pour over or drip methods like Aeropress, Chemex, and V60',
-        },
-        {
-          title: 'Espresso',
-          text: 'Dense and finely ground beans for an intense, flavorful experience',
-        },
-      ],
-    },
-    {
-      id: 'coffeeType',
-      label: 'What type of coffee?',
-      options: [
-        {
-          title: 'Single Origin',
-          text: 'Distinct, high quality coffee from a specific family-owned farm',
-        },
-        {
-          title: 'Decaf',
-          text: 'Just like regular coffee, except the caffeine has been removed',
-        },
-        {
-          title: 'Blended',
-          text: 'Combination of two or three dark roasted beans of organic coffees',
-        },
-      ],
-    },
-    {
-      id: 'quantity',
-      label: 'How much would you like?',
-      options: [
-        {
-          title: '250g',
-          text: 'Perfect for the solo drinker. Yields about 12 delicious cups.',
-        },
-        {
-          title: '500g',
-          text: 'Perfect option for a couple. Yields about 40 delectable cups.',
-        },
-        {
-          title: '1000g',
-          text: 'Perfect for offices and events. Yields about 90 delightful cups.',
-        },
-      ],
-    },
-    {
-      id: 'grindMethod',
-      label: 'Want us to grind them?',
-      options: [
-        {
-          title: 'Wholebean',
-          text: 'Best choice if you cherish the full sensory experience',
-        },
-        {
-          title: 'Filter',
-          text: 'For drip or pour-over coffee methods such as V60 or Aeropress',
-        },
-        {
-          title: 'Cafetiére',
-          text: ' Course ground beans specially suited for french press coffee',
-        },
-      ],
-    },
-    {
-      id: 'shipping',
-      label: 'How often should we deliver?',
-      options: [
-        {
-          title: 'Every week',
-          text: '$7.20 per shipment. Includes free first-class shipping.',
-        },
-        {
-          title: 'Every 2 weeks',
-          text: '$9.60 per shipment. Includes free priority shipping.',
-        },
-        {
-          title: 'Every month',
-          text: '$12.00 per shipment. Includes free priority shipping.',
-        },
-      ],
-    },
-  ] as const;
+  private scroller = inject(ViewportScroller);
 
-  form = this.fb.group({
+  protected readonly steps = inject(CreatePlanStepsToken);
+
+  protected currentStep = signal<string>(this.steps[0].id);
+
+  protected form = this.fb.group({
     [this.steps[0].id]: [''],
     [this.steps[1].id]: { value: '', disabled: true },
     [this.steps[2].id]: { value: '', disabled: true },
@@ -118,55 +42,106 @@ export class CreatePlanFormContainer {
 
   protected values$ = this.form.valueChanges.pipe(
     startWith(this.form.value),
+    observeOn(asyncScheduler),
     tap((value) => {
-      this.updateCoffeeType(value);
-      this.updateQuantity(value);
-      this.updateGridMethod(value);
-      this.updateShipping(value);
+      this._updateBeanType(value);
+      this._updateQuantity(value);
+      this._updateGridOption(value);
+      this._updateDeliveries(value);
+      this._setCurrentStep();
     }),
   );
 
   _getValues(values: null | typeof this.form.value) {
     return {
-      preparationMode: values?.preparationMode,
-      coffeeType: values?.coffeeType,
+      preferences: values?.preferences,
+      beantype: values?.beantype,
       quantity: values?.quantity,
-      grindMethod: values?.grindMethod,
-      shipping: values?.shipping,
+      grindoption: values?.grindoption,
+      deliveries: values?.deliveries,
     };
   }
 
-  updateCoffeeType(value: typeof this.form.value) {
-    const coffeeType = this.form.controls.coffeeType;
-    if (value.preparationMode && coffeeType.disabled) coffeeType.enable();
+  _updateBeanType(value: typeof this.form.value) {
+    const beantype = this.form.controls.beantype;
+    if (value.preferences && beantype.disabled) {
+      beantype.enable();
+    } else if (!value.preferences && beantype.enabled) {
+      beantype.setValue('');
+      beantype.disable();
+    }
   }
 
-  updateQuantity(value: typeof this.form.value) {
+  _updateQuantity(value: typeof this.form.value) {
     const quantity = this.form.controls.quantity;
-    if (value.coffeeType && quantity.disabled) quantity.enable();
+
+    if (value.beantype && quantity.disabled) {
+      quantity.enable();
+    } else if (!value.beantype && quantity.enabled) {
+      quantity.setValue('');
+      quantity.disable();
+    }
   }
 
-  updateGridMethod(value: typeof this.form.value) {
-    const grindMethod = this.form.controls.grindMethod;
-    if (value.preparationMode === 'Capsule' && grindMethod.enabled) {
-      grindMethod.disable();
-      grindMethod.setValue('');
-    } else if (
-      value.preparationMode !== 'Capsule' &&
+  _updateGridOption(value: typeof this.form.value) {
+    const grindoption = this.form.controls.grindoption;
+
+    if (
+      value.preferences !== 'Capsule' &&
       value.quantity &&
-      grindMethod.disabled
+      grindoption.disabled
     ) {
-      grindMethod.enable();
+      grindoption.enable();
+    } else if (
+      grindoption.enabled &&
+      (value.preferences === 'Capsule' || !value.quantity)
+    ) {
+      grindoption.setValue('');
+      grindoption.disable();
     }
   }
-  updateShipping(value: typeof this.form.value) {
-    const shipping = this.form.controls.shipping;
+
+  _updateDeliveries(value: typeof this.form.value) {
+    const deliveries = this.form.controls.deliveries;
     if (
-      shipping.disabled &&
-      ((value.preparationMode === 'Capsule' && value.quantity) ||
-        value.grindMethod)
+      deliveries.disabled &&
+      ((value.preferences === 'Capsule' && value.quantity) || value.grindoption)
     ) {
-      shipping.enable();
+      deliveries.enable();
+    } else if (
+      deliveries.enabled &&
+      ((value.preferences === 'Capsule' && !value.quantity) ||
+        (value.preferences !== 'Capsule' && !value.grindoption))
+    ) {
+      deliveries.setValue('');
+      deliveries.disable();
     }
+
+    console.log(value);
+  }
+
+  _setCurrentStep(): void {
+    const controls = this.form.controls;
+
+    if (controls.deliveries.enabled) {
+      return this.currentStep.set(this.steps[4].id);
+    }
+
+    if (controls.grindoption.enabled) {
+      return this.currentStep.set(this.steps[3].id);
+    }
+
+    if (controls.quantity.enabled) {
+      return this.currentStep.set(this.steps[2].id);
+    }
+
+    if (controls.beantype.enabled) {
+      return this.currentStep.set(this.steps[1].id);
+    }
+    return this.currentStep.set(this.steps[0].id);
+  }
+
+  scrollToAccordion(id: string) {
+    this.scroller.scrollToAnchor(id);
   }
 }

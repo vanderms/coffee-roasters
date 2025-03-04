@@ -1,63 +1,87 @@
 <section>
   <h2 class="sr-only">Create Your Plan Form</h2>
 
-  <form [formGroup]="form">
-    <div class="flex flex-col gap-24">
-      @for (item of steps; track $index) {
-      <app-create-plan-accordion
-        [label]="item.label"
-        [options]="item.options"
-        [id]="item.id"
-        [formControlName]="item.id"
-      />
-      }
-    </div>
-    <div *ngIf="_getValues(values$ | async) as values">
-      <output class="bg-neutral-80 mt-[7.5rem] grid rounded-lg px-6 py-8">
-        <p class="body-md text-neutral-60 uppercase">Order Summary</p>
-        <p class="heading-sm text-neutral-10 mt-2">
-          “
-          <span *ngIf="values.preparationMode"
-            >I drink my coffee as
-            <strong class="text-primary-70">{{values.preparationMode}}</strong>
-            <span> </span>
-          </span>
-
-          <span *ngIf="values.coffeeType"
-            >, with a
-            <strong class="text-primary-70">{{values.coffeeType}}</strong> type
-            of bean
-            <span> </span>
-          </span>
-
-          <span *ngIf="values.quantity"
-            >.
-            <strong class="text-primary-70">{{values.quantity}} </strong>
-            <span> </span>
-          </span>
-
-          <span
-            *ngIf="values.grindMethod && values.preparationMode !== 'Capsule'"
+  <div class="flex lg:justify-between">
+    <div class="hidden w-[16rem] lg:block">
+      <ol>
+        @for (item of steps; track $index) {
+        <li class="border-[#dfdfdf] py-6 not-last:border-b">
+          <a
+            class="heading-sm text-neutral-60 flex items-center gap-6 opacity-40 hover:opacity-60"
+            [ngClass]="{'current-step': (currentStep() === item.id)}"
+            [routerLink]="[]"
+            [fragment]="item.id"
+            (click)="scrollToAccordion(item.id)"
           >
-            ground ala
-            <strong class="text-primary-70">{{values.grindMethod}}</strong>
-            <span> </span>
-          </span>
-
-          <span *ngIf="values.shipping">
-            , sent to me
-            <strong class="text-primary-70">{{values.shipping}}</strong>.
-          </span>
-          ”
-        </p>
-      </output>
-      <button
-        class="primary-btn mx-auto mt-14 w-[13.5625rem] cursor-pointer disabled:cursor-default"
-        type="submit"
-        [disabled]="!values.shipping"
-      >
-        Create Your Plan
-      </button>
+            <span> 0{{$index + 1}} </span>
+            <span class="text-neutral-80"> {{item.name}}</span>
+          </a>
+        </li>
+        }
+      </ol>
     </div>
-  </form>
+    <form [formGroup]="form" class="w-full max-w-[45.625rem]">
+      <div class="flex flex-col gap-24">
+        @for (item of steps; track $index) {
+        <app-create-plan-accordion
+          [label]="item.label"
+          [options]="item.options"
+          [id]="item.id"
+          [formControlName]="item.id"
+        />
+        }
+      </div>
+      <div *ngIf="_getValues(values$ | async) as values">
+        <output
+          class="bg-neutral-80 mt-[7.5rem] grid rounded-lg px-6 py-8 md:px-20 md:py-7"
+        >
+          <p class="body-md text-neutral-60 uppercase">Order Summary</p>
+          <p class="heading-sm text-neutral-10 mt-2">
+            “
+            <span *ngIf="values.preferences"
+              >I drink my coffee as
+              <strong class="text-primary-70">{{values.preferences}}</strong>
+              <span> </span>
+            </span>
+
+            <span *ngIf="values.beantype"
+              >, with a
+              <strong class="text-primary-70">{{values.beantype}}</strong>
+              type of bean
+              <span> </span>
+            </span>
+
+            <span *ngIf="values.quantity"
+              >.
+              <strong class="text-primary-70">{{values.quantity}} </strong>
+              <span> </span>
+            </span>
+
+            <span
+              *ngIf="values.grindoption && values.preferences !== 'Capsule'"
+            >
+              ground ala
+              <strong class="text-primary-70">{{values.grindoption}}</strong>
+              <span> </span>
+            </span>
+
+            <span *ngIf="values.deliveries">
+              , sent to me
+              <strong class="text-primary-70">{{values.deliveries}}</strong>.
+            </span>
+            ”
+          </p>
+        </output>
+        <div class="flex flex-col items-center md:items-end">
+          <button
+            class="primary-btn mt-14 w-[13.5625rem] cursor-pointer disabled:cursor-default"
+            type="submit"
+            [disabled]="!values.deliveries"
+          >
+            Create Your Plan
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
 </section>
