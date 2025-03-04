@@ -1,5 +1,11 @@
 import { InjectionToken } from '@angular/core';
 
+export const PricePerShipment = {
+  EveryWeek: '#[EVERY__WEEK__PRICE]',
+  EveryTwoWeeks: '#[EVERY__TWO-WEEK__PRICE]',
+  EveryMonth: '#[EVERY__MONTH__PRICE]',
+} as const;
+
 const CREATE_PLAN_STEPS = [
   {
     id: 'preferences',
@@ -84,15 +90,15 @@ const CREATE_PLAN_STEPS = [
     options: [
       {
         title: 'Every week',
-        text: '$7.20 per shipment. Includes free first-class deliveries.',
+        text: `${PricePerShipment.EveryWeek} per shipment. Includes free first-class deliveries.`,
       },
       {
         title: 'Every 2 weeks',
-        text: '$9.60 per shipment. Includes free priority deliveries.',
+        text: `${PricePerShipment.EveryTwoWeeks} per shipment. Includes free priority deliveries.`,
       },
       {
         title: 'Every month',
-        text: '$12.00 per shipment. Includes free priority deliveries.',
+        text: `${PricePerShipment.EveryMonth} per shipment. Includes free priority deliveries.`,
       },
     ],
   },

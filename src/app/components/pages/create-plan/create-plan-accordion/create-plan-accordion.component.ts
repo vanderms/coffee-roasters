@@ -33,7 +33,7 @@ export type CreatePlanAccordionOption = {
 export class CreatePlanAccordionComponent implements ControlValueAccessor {
   label = input.required<string>();
 
-  readonly options = input.required<readonly CreatePlanAccordionOption[]>();
+  options = input.required<readonly CreatePlanAccordionOption[]>();
 
   value = signal('');
 
