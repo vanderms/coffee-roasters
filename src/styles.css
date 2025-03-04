@@ -11,9 +11,12 @@
 @theme {
   --color-primary-70: #0e8784;
   --color-primary-50: #66d2cf;
+
   --color-secondary-30: #fdd6ba;
+
   --color-neutral-80: #333d4b;
   --color-neutral-60: #83888f;
+  --color-neutral-20: #f4f1eb;
   --color-neutral-10: #fefcf7;
   --color-neutral-05: #fff;
 }
@@ -27,6 +30,7 @@
   --heading-xl: 900 4.5rem/1 var(--font-display);
   --heading-lg: 900 2.5rem/1.2 var(--font-display);
   --heading-md: 900 2rem/1.125 var(--font-display);
+  --heading-sm2: 900 1.75rem/1.125 var(--font-display);
   --heading-sm: 900 1.5rem/1.334 var(--font-display);
 
   --body-spacing-sm: 0.92px;
@@ -52,7 +56,7 @@
 
 @layer components {
   .ctn {
-    padding-inline: min(6.4%, 1.5rem);
+    padding-inline: min(6.4vw, 1.5rem);
 
     @variant md {
       padding-inline: 2.5rem;
@@ -61,6 +65,21 @@
     @variant lg {
       padding-inline: max(2.5rem, 50vw - 40rem);
     }
+  }
+}
+
+@utility full-width {
+  width: calc(100% + 2 * min(6.4vw, 1.5rem));
+  margin-left: calc(-1 * min(6.4vw, 1.5rem));
+
+  @variant md {
+    width: calc(100% + 5rem);
+    margin-left: -2.5rem;
+  }
+
+  @variant lg {
+    width: calc(100% + 2 * max(2.5rem, 50vw - 40rem));
+    margin-left: calc(-1 * max(2.5rem, 50vw - 40rem));
   }
 }
 
@@ -83,7 +102,7 @@
   background-color: var(--color-neutral-60);
 }
 
-.primary-btn:active {
+.primary-btn:active:not(:disabled) {
   transform: translateY(0.125rem);
   transition: all 0.25s;
 }
@@ -96,4 +115,14 @@
 .component\:icon-link:hover :where(svg, path) {
   color: var(--color-secondary-30);
   fill: var(--color-secondary-30);
+}
+
+.component\:icon-accordion :where(svg, path) {
+  color: var(--color-primary-70);
+  fill: var(--color-primary-70);
+}
+
+.component\:icon-accordion:hover :where(svg, path) {
+  color: var(--color-primary-50);
+  fill: var(--color-primary-50);
 }

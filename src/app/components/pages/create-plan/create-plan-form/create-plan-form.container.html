@@ -1,0 +1,137 @@
+<section>
+  <h2 class="sr-only">Create Your Plan Form</h2>
+
+  <div class="flex lg:justify-between">
+    <div class="hidden w-[16rem] lg:block">
+      <ol>
+        @for (item of steps; track $index) {
+        <li class="border-[#dfdfdf] py-6 not-last:border-b">
+          <a
+            class="heading-sm text-neutral-60 flex items-center gap-6 opacity-40 hover:opacity-60"
+            [ngClass]="{'current-step': (currentStep() === item.id)}"
+            [routerLink]="[]"
+            [fragment]="item.id"
+            (click)="scrollToAccordion(item.id)"
+          >
+            <span> 0{{$index + 1}} </span>
+            <span class="text-neutral-80"> {{item.name}}</span>
+          </a>
+        </li>
+        }
+      </ol>
+    </div>
+    <form
+      [formGroup]="form"
+      class="w-full max-w-[45.625rem]"
+      (ngSubmit)="handleSubmit(dialog)"
+    >
+      <div class="flex flex-col gap-24">
+        @for (item of steps; track $index) {
+        <app-create-plan-accordion
+          [label]="item.label"
+          [options]="interceptOptions(item.options)"
+          [id]="item.id"
+          [formControlName]="item.id"
+        />
+        }
+      </div>
+      <div *ngIf="_getValues(values$ | async) as values">
+        <output
+          class="bg-neutral-80 mt-[7.5rem] grid rounded-lg px-6 py-8 md:px-20 md:py-7"
+        >
+          <p class="body-md text-neutral-60 uppercase">Order Summary</p>
+          <div class="text-neutral-10">
+            <ng-container
+              *ngTemplateOutlet="orderContent; context: {$implicit: values}"
+            ></ng-container>
+          </div>
+        </output>
+        <div class="flex flex-col items-center md:items-end">
+          <button
+            class="primary-btn mt-14 w-[13.5625rem] cursor-pointer disabled:cursor-default"
+            type="submit"
+            [disabled]="!values.deliveries"
+          >
+            Create Your Plan
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+<dialog
+  #dialog
+  class="mx-auto my-auto rounded-xl backdrop:bg-[rgba(0,0,0,0.5)]"
+>
+  <article class="md:w-[33.75rem]">
+    <header
+      class="bg-neutral-80 flex h-[5.5rem] items-center px-6 md:h-[8.5rem] md:px-14"
+    >
+      <h2 class="heading-sm2 text-neutral-10">Order Summary</h2>
+    </header>
+    <div
+      class="text-neutral-60 grid px-6 pt-10 pb-6 md:p-14"
+      *ngIf="_getValues(values$ | async) as values"
+    >
+      <ng-container
+        *ngTemplateOutlet="orderContent; context: {$implicit: values}"
+      ></ng-container>
+
+      <p class="body-md mt-2">
+        Is this correct? You can proceed to checkout or go back to plan
+        selection if something is off. Subscription discount codes can also be
+        redeemed at the checkout.
+      </p>
+      <form class="mt-6 items-center md:grid md:grid-cols-2" method="dialog">
+        <output class="heading-md text-neutral-80 hidden md:block">
+          {{prices().cost | currency:'USD':'symbol':'1.2-2'}} / mo
+        </output>
+        <button
+          class="primary-btn w-full cursor-pointer disabled:cursor-default"
+          type="submit"
+        >
+          Checkout
+          <span class="contents md:hidden"
+            >- {{prices().cost | currency:'USD':'symbol':'1.2-2'}} / mo</span
+          >
+        </button>
+      </form>
+    </div>
+  </article>
+</dialog>
+
+<ng-template let-values #orderContent>
+  <p class="heading-sm">
+    “
+    <span *ngIf="values.preferences"
+      >I drink my coffee as
+      <strong class="text-primary-70">{{values.preferences}}</strong>
+      <span> </span>
+    </span>
+
+    <span *ngIf="values.beantype"
+      >, with a
+      <strong class="text-primary-70">{{values.beantype}}</strong>
+      type of bean
+      <span> </span>
+    </span>
+
+    <span *ngIf="values.quantity"
+      >.
+      <strong class="text-primary-70">{{values.quantity}} </strong>
+      <span> </span>
+    </span>
+
+    <span *ngIf="values.grindoption && values.preferences !== 'Capsule'">
+      ground ala
+      <strong class="text-primary-70">{{values.grindoption}}</strong>
+      <span> </span>
+    </span>
+
+    <span *ngIf="values.deliveries">
+      , sent to me
+      <strong class="text-primary-70">{{values.deliveries}}</strong>.
+    </span>
+    ”
+  </p>
+</ng-template>

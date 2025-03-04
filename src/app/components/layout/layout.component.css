@@ -32,5 +32,9 @@
     @variant md {
       @apply text-neutral-60 uppercase;
     }
+
+    @variant hover {
+      @apply text-neutral-80;
+    }
   }
 }

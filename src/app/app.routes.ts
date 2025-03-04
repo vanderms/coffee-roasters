@@ -21,4 +21,14 @@ export const routes: Routes = [
       return AboutUsComponent;
     },
   },
+  {
+    path: 'create-plan',
+    title: 'Coffeeroasters: Create Your Plan',
+    loadComponent: async () => {
+      const { CreatePlanPage: page } = await import(
+        '../app/components/pages/create-plan/create-plan.page'
+      );
+      return page;
+    },
+  },
 ];
