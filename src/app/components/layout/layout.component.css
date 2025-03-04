@@ -2,7 +2,7 @@
 
 @layer components {
   .nav {
-    @apply fixed pt-10;
+    @apply absolute pt-10;
     background: linear-gradient(
       0deg,
       rgba(254, 252, 247, 0.504981) 0%,
